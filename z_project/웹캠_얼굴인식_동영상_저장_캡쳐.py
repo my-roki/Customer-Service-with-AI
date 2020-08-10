@@ -48,6 +48,15 @@ if capture.isOpened():
             y1 = int(detections[0, 0, i, 4] * h)
             x2 = int(detections[0, 0, i, 5] * w)
             y2 = int(detections[0, 0, i, 6] * h)
+            wi = x2-x1
+            hi = y2-y1
+            centroidx, centroidy = x1+(wi//2), y1+(hi//2)
+            if wi >= hi :
+                y1 = centroidy - (wi//2)
+                y2 = centroidy + (wi//2)
+            else :
+                x1 = centroidx - (hi//2)
+                x2 = centroidx + (hi//2)
       
             # draw rects
             cv2.rectangle(result_img, (x1, y1), (x2, y2), (255, 255, 255), int(round(h/150)), cv2.LINE_AA)
