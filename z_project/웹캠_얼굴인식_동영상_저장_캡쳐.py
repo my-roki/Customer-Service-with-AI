@@ -74,14 +74,14 @@ if capture.isOpened():
             
         elif key == 24:         # 동영상 녹화 24 = Ctrl + X
             record=True
-            video = cv2.VideoWriter("./image/record.mp4", fourcc, 30.0, (img.shape[1], img.shape[0]))
+            video = cv2.VideoWriter("./video/record.mp4", fourcc, 30.0, (img.shape[1], img.shape[0]))
         
         elif key == 3:          # 동영상 녹화 중지 및 영상 저장 3 = Ctrl + C
             print("Record stop")
             record = False       
             video.release()
             now = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
-            path_="./image/"
+            path_="./video/"
             os.rename(path_+"record.mp4",path_+str(now)+".mp4")
             
         if record == True:      # 동영상이 녹화되는 동안 프레임 만큼 이미지로 저장
