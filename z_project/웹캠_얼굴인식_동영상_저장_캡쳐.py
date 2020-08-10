@@ -3,11 +3,11 @@ import cv2, time
 import os
 
 # load model
-model_path = 'D:/Fpjt/z_project/models/opencv_face_detector_uint8.pb'
-config_path = 'D:/Fpjt/z_project/models/opencv_face_detector.pbtxt'
+model_path = './models/opencv_face_detector_uint8.pb'
+config_path = './models/opencv_face_detector.pbtxt'
 net = cv2.dnn.readNetFromTensorflow(model_path, config_path)
 
-conf_threshold = 0.8
+conf_threshold = 0.8    # conf_threshold 값보다 더 높이 인식된 얼굴만 추출하게 하는 파라미터값입니다.
 
 capture = cv2.VideoCapture(0)    # 0번 카메라를 켭니다.
 capture.isOpened()
@@ -21,8 +21,8 @@ global capture, count, key
 
 def img_capture():
     global capture, count
-    if(count != 0):
-        cv2.imwrite("D:/Fpjt/z_project/image/frame%d.jpg" % (count), result_img)
+    if(count != 0):     # 프레임수만큼 이미지로 저장합니다. count % 15 == 0 으로 설정하면 15프레임마다 1장씩 이미지를 저장할 수 있습니다.
+        cv2.imwrite("./image/frame%d.jpg" % (count), result_img)
         print('Saved frame%d.jpg' % count)
     count += 1
 
@@ -63,14 +63,14 @@ if capture.isOpened():
             
         elif key == 24:         # 동영상 녹화 24 = Ctrl + X
             record=True
-            video = cv2.VideoWriter("D:/Fpjt/z_project/image/record.mp4", fourcc, 30.0, (img.shape[1], img.shape[0]))
+            video = cv2.VideoWriter("./image/record.mp4", fourcc, 30.0, (img.shape[1], img.shape[0]))
         
         elif key == 3:          # 동영상 녹화 중지 및 영상 저장 3 = Ctrl + C
             print("Record stop")
             record = False       
             video.release()
             now = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
-            path_="D:/Fpjt/z_project/image/"
+            path_="./image/"
             os.rename(path_+"record.mp4",path_+str(now)+".mp4")
             
         if record == True:      # 동영상이 녹화되는 동안 프레임 만큼 이미지로 저장

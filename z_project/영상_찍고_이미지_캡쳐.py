@@ -16,7 +16,7 @@ global capture, count, key
 def img_capture():
     global capture, count
     if(count % 15 == 0):
-        cv2.imwrite("D:/Fpjt/z_project/image/frame%d.jpg" % (count/15), frame)
+        cv2.imwrite("./image/frame%d.jpg" % (count/15), frame)
         print('Saved frame%d.jpg' % count)
     count += 1
             
@@ -32,14 +32,14 @@ if capture.isOpened():
             
         elif key == 24:         # 26 = Ctrl + X
             record=True
-            video = cv2.VideoWriter("D:/Fpjt/z_project/image/record.mp4", fourcc, 30.0, (frame.shape[1], frame.shape[0]))
+            video = cv2.VideoWriter("./image/record.mp4", fourcc, 30.0, (frame.shape[1], frame.shape[0]))
         
         elif key == 3:          # 3 = Ctrl + C
             print("Record stop")
             record = False       
             video.release()
             now = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
-            path_="D:/Fpjt/z_project/image/"
+            path_="./image/"
             os.rename(path_+"record.mp4",path_+str(now)+".mp4")
             
         if record == True:
