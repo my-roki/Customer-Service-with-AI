@@ -22,7 +22,7 @@ global capture, count, key
 def img_capture():
     global capture, count
     if(count != 0):     # 프레임수만큼 이미지로 저장합니다. count % 15 == 0 으로 설정하면 15프레임마다 1장씩 이미지를 저장할 수 있습니다.
-        cv2.imwrite("./image/frame%d.jpg" % (count), result_img)
+        cv2.imwrite("./image/frame%d.jpg" % (count), chk_img)
         print('Saved frame%d.jpg' % count)
     count += 1
 
@@ -51,6 +51,7 @@ if capture.isOpened():
       
             # draw rects
             cv2.rectangle(result_img, (x1, y1), (x2, y2), (255, 255, 255), int(round(h/150)), cv2.LINE_AA)
+            chk_img = result_img[y1:y2, x1:x2].copy()
             # cv2.putText(result_img, '%.2f%%' % (confidence * 100.), (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
         # visualize
