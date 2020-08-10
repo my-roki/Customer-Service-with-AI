@@ -70,55 +70,57 @@ out.release()
 cv2.destroyAllWindows()
 
 #############################이미지 캡쳐 과정 #################################
+import os
+
 capture = cv2.VideoCapture(0)    # 0번 카메라를 켭니다.
 capture.isOpened()
-fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v') 
+
+fourcc = cv2.VideoWriter_fourcc(*'DIVX') 
 record = False
 count = 1
 key = 1
 
+global capture, count, key
+
 def img_capture():
-    while (record == True):
-        ret, frame = capture.read()
-     
-        if(int(capture.get(1)) % 20 == 0):
-            print('Saved frame number : ' + str(int(capture.get(1))))
-            cv2.imwrite("D:/Fpjt/z_project/image/frame%d.jpg" % count, frame)
-            print('Saved frame%d.jpg' % count)
-            count += 1
+    global capture, count
+    if(count % 15 == 0):
+        cv2.imwrite("D:/Fpjt/z_project/image/frame%d.jpg" % (count/15), frame)
+        print('Saved frame%d.jpg' % count)
+    count += 1
             
-                
 if capture.isOpened():
     while True:
         ret, frame = capture.read()
-        cv2.imshow("VideoFrame", frame)
-
-        now = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-        # datetime 모듈을 포함하여 현재 시간을 받아와 제목으로 사용합니다.
-        key = cv2.waitKey(33)
-        # key 값에 현재 눌러진 키보드 키의 값이 저장됩니다. 33ms마다 갱신됩니다.
+        
+        cv2.imshow("Video", frame)
+        key = cv2.waitKey(1)
 
         if key == 27:           # 27 = ESC
             break
+            
         elif key == 24:         # 26 = Ctrl + X
-            print("Record is running")
-            record = True 
-            video = cv2.VideoWriter("D:/Fpjt/z_project/image/" + str(now) + ".avi", fourcc, 20.0, (frame.shape[1], frame.shape[0]))       
-            img_capture()
-                      
+            record=True
+            video = cv2.VideoWriter("D:/Fpjt/z_project/image/record.mp4", fourcc, 30.0, (frame.shape[1], frame.shape[0]))
+        
         elif key == 3:          # 3 = Ctrl + C
             print("Record stop")
-            record = False
+            record = False       
             video.release()
-                    
-        else:
-            print("No Frame")
-        
+            now = datetime.datetime.now().strftime("%Y-%m-%d_%H_%M_%S")
+            path_="D:/Fpjt/z_project/image/"
+            os.rename(path_+"record.mp4",path_+str(now)+".mp4")
+            
+        if record == True:
+            print("Record is running")
+            video.write(frame)
+            img_capture()
 else:
     print("Camera is not opened")
             
 capture.release()
 cv2.destroyAllWindows()
+
 
 
 
