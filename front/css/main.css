@@ -1,0 +1,85 @@
+/* a href 태그 색&밑줄 없애기 */
+#wrap{
+  position: relative;
+}
+a{
+  text-decoration: none;
+}
+
+/* ul>li 앞에 나오는 표시 없애기 */
+ul li {list-style-type: none;}
+
+
+/* 글자 크기, 위치 조절 */
+/* 전체적인 레이아웃 설정 */
+#wrapper {
+  display: flex;
+  width: 100%;
+}
+
+#sidebar{
+  order: 1;
+  width: 15%;
+  font-size: 2vw;
+  text-align: center;
+  background-color:rgb(73, 73, 73);
+  height: 110vh;
+  min-height: 550px;
+} 
+
+#sidebar a {
+  color: white;
+}
+
+#right {
+  order: 2;
+  width: 85%;
+}
+
+#navbar{
+  text-align: left;
+  background-color:rgb(255, 255, 255);
+  height: 5vh;
+  font-size: 0;
+}
+  
+#navbar li, a{
+  font-size: 5%;
+  display:inline-block; margin-left: 15px;
+  color:black;
+}
+
+#main{
+  background-color:rgb(228, 228, 228);
+  height: 105vh;
+} 
+
+#main h1, h3, a{
+  font-size: 1.5vw;
+}
+
+#box{
+  text-align: center;
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.box0{
+  width : 100%;
+  height : 30%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.box0 h1{
+  text-align: left;
+  margin-left: 15px;
+}
+
+.box1{
+  flex: 1 1 40%;
+  height: 20vw;
+  margin: 1vw;
+  border: 1px solid black; 
+}
+
