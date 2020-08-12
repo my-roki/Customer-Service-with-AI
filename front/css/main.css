@@ -8,55 +8,93 @@ a{
 
 /* ul>li 앞에 나오는 표시 없애기 */
 ul li {list-style-type: none;}
+div li{list-style-type: none;}
 
 
 /* 글자 크기, 위치 조절 */
 /* 전체적인 레이아웃 설정 */
+
+body{
+  margin:0;
+  padding:0;
+}
+
 #wrapper {
   display: flex;
   width: 100%;
 }
 
+#right {
+  order: 2;
+  width: 84vw;
+  height:111vh;
+  min-height: 550px;
+}
+
+/* 사이드바 */
 #sidebar{
   order: 1;
-  width: 15%;
-  font-size: 2vw;
+  height: 112vh;
+  min-height: 550px;
+  width: 16vw;
   text-align: center;
   background-color:rgb(73, 73, 73);
-  height: 110vh;
-  min-height: 550px;
+  display:flex;
+  flex-direction: column;
 } 
 
 #sidebar a {
   color: white;
+  font-size: 1.5vw;
 }
 
-#right {
-  order: 2;
-  width: 85%;
+#sidebar a:hover{
+  border-bottom: 2px solid rgb(255, 255, 255);
 }
 
+.sidebar-logo{
+  border-bottom: 1px solid rgb(243, 243, 243);
+  height: 6vh;
+  font-size: 2vw;
+}
+
+.sidebar-logo a{
+  font-weight: bolder;
+  font-style: italic;
+}
+
+.sidebar-menu{
+  height:100vh;
+}
+
+/* navbar */
 #navbar{
   text-align: left;
   background-color:rgb(255, 255, 255);
-  height: 5vh;
-  font-size: 0;
+  height: 6vh;
+  font-size: 4vh;
 }
   
 #navbar li, a{
-  font-size: 5%;
-  display:inline-block; margin-left: 15px;
-  color:black;
+  font-size: 1.5vw;
+  display:inline-block; 
+  margin-left: 15px;
+  color:rgb(199, 191, 191);
 }
 
+#navbar li a:active{
+  color: rgb(67, 117, 255);
+}
+
+#navbar li a:hover{
+  border-bottom: 2px solid rgb(77, 76, 76);
+}
+
+/* main */
 #main{
   background-color:rgb(228, 228, 228);
-  height: 105vh;
+  height: 100vh;
 } 
-
-#main h1, h3, a{
-  font-size: 1.5vw;
-}
 
 #box{
   text-align: center;
@@ -64,22 +102,82 @@ ul li {list-style-type: none;}
   flex-wrap: wrap;
 }
 
+/* Dashboard 적혀 있는 칸 */
 .box0{
   width : 100%;
-  height : 30%;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  height : 7vh;
+  border-top: 1px solid rgb(212, 212, 212);
 }
 
 .box0 h1{
   text-align: left;
-  margin-left: 15px;
+  margin-left: 2vw;
+  font-size: 1.5vw;
 }
 
+/* index에 있는 각 박스 */
 .box1{
   flex: 1 1 40%;
   height: 20vw;
-  margin: 1vw;
-  border: 1px solid black; 
+  margin-top: 0.3vw;
+  margin-bottom: 1vw;
+  margin-left: 2vw;
+  justify-content: space-between;
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
 }
+
+.box2{
+  flex: 1 1 40%;
+  height: 20vw;
+  margin-top: 0.3vw;
+  margin-right: 3%;
+  margin-left: 1%;  
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+}
+
+.box3{
+  flex: 1 1 40%;
+  height: 20vw;
+  margin-top: 0.3vw;
+  margin-bottom: 1vw;
+  margin-left: 2vw;
+  justify-content: space-between;
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+}
+
+.box4{
+  flex: 1 1 40%;
+  height: 20vw;
+  margin-top: 0.3vw;
+  margin-right: 3%;
+  margin-left: 1%;
+  border: 1px solid rgb(212, 212, 212);
+  background-color: white;
+}
+
+
+.box1 .box2 .box3 .box4 li, a{
+  font-size: 1.5vw;
+}
+
+.img-click{
+  width : 60%;
+  margin : auto;
+}
+
+.img-click img{
+  max-width: 100%;
+  height: auto;
+}
+
+#footer{
+  background-color:rgb(255, 255, 255);
+  height: 4vh;
+  font-size: 70%;
+  margin-left: 15px;
+} 
+
 
