@@ -14,7 +14,7 @@ try:
     os.mkdir(train_dir)
     os.mkdir(validation_dir)
     os.mkdir(test_dir)
-except Exception as e: 
+except Exception as e:
     pass
 
 
@@ -25,12 +25,12 @@ train_rok_dir = os.path.join(train_dir,'rok')
 train_sk_dir = os.path.join(train_dir,'sk')
 train_yang_dir = os.path.join(train_dir,'yang')
 
-try:    
+try:
     os.mkdir(train_rok_dir)
     os.mkdir(train_hui_dir)
     os.mkdir(train_sk_dir)
     os.mkdir(train_yang_dir)
-except Exception as e: 
+except Exception as e:
     pass
 
 
@@ -44,7 +44,7 @@ try:
     os.mkdir(validation_rok_dir)
     os.mkdir(validation_sk_dir)
     os.mkdir(validation_yang_dir)
-except Exception as e: 
+except Exception as e:
     pass
 
 
@@ -58,7 +58,7 @@ try:
     os.mkdir(test_rok_dir)
     os.mkdir(test_sk_dir)
     os.mkdir(test_yang_dir)
-except Exception as e: 
+except Exception as e:
     pass
 
 
@@ -66,21 +66,21 @@ fnames = ['rok{}.jpg'.format(i) for i in range(1,151)]  # 이 부분도 랜덤 �
 fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"rok/" + fname)
-    dst = os.path.join(train_rok_dir,fname) 
+    dst = os.path.join(train_rok_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['rok{}.jpg'.format(i) for i in range(151,201)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"rok/" + fname)
-    dst = os.path.join(validation_rok_dir,fname) 
+    dst = os.path.join(validation_rok_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['rok{}.jpg'.format(i) for i in range(201,251)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"rok/" + fname)
-    dst = os.path.join(test_rok_dir,fname) 
+    dst = os.path.join(test_rok_dir,fname)
     shutil.copyfile(src, dst)
 
 
@@ -88,21 +88,21 @@ fnames = ['hui{}.jpg'.format(i) for i in range(1,101)]  # 이 부분도 랜덤 �
 fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"hui/" + fname)
-    dst = os.path.join(train_hui_dir,fname) 
+    dst = os.path.join(train_hui_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['hui{}.jpg'.format(i) for i in range(101,151)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"hui/" + fname)
-    dst = os.path.join(validation_hui_dir,fname) 
+    dst = os.path.join(validation_hui_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['hui{}.jpg'.format(i) for i in range(151,200)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"hui/" + fname)
-    dst = os.path.join(test_hui_dir,fname) 
+    dst = os.path.join(test_hui_dir,fname)
     shutil.copyfile(src, dst)
 
 
@@ -110,50 +110,50 @@ fnames = ['sk{}.jpg'.format(i) for i in range(1,121)]  # 이 부분도 랜덤 �
 fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"sk/" + fname)
-    dst = os.path.join(train_sk_dir,fname) 
+    dst = os.path.join(train_sk_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['sk{}.jpg'.format(i) for i in range(121,181)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"sk/" + fname)
-    dst = os.path.join(validation_sk_dir,fname) 
+    dst = os.path.join(validation_sk_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['sk{}.jpg'.format(i) for i in range(181,245)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"sk/" + fname)
-    dst = os.path.join(test_sk_dir,fname) 
+    dst = os.path.join(test_sk_dir,fname)
     shutil.copyfile(src, dst)
-    
-    
+
+
 fnames = ['yang{}.jpg'.format(i) for i in range(1,121)]  # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
 fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"yang/" + fname)
-    dst = os.path.join(train_yang_dir,fname) 
+    dst = os.path.join(train_yang_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['yang{}.jpg'.format(i) for i in range(121,181)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"yang/" + fname)
-    dst = os.path.join(validation_yang_dir,fname) 
+    dst = os.path.join(validation_yang_dir,fname)
     shutil.copyfile(src, dst)
 
 fnames = ['yang{}.jpg'.format(i) for i in range(181,240)] # 이 부분도 랜덤 이미지 추출지 좋지 않을까?
-fnames  
+fnames
 for fname in fnames:
     src = os.path.join(original_dataset_dir,"yang/" + fname)
-    dst = os.path.join(test_yang_dir,fname) 
-    shutil.copyfile(src, dst)    
-    
+    dst = os.path.join(test_yang_dir,fname)
+    shutil.copyfile(src, dst)
+
 ################################################################################
 
 
 from keras import layers
-from keras import models     
+from keras import models
 
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3,3), activation = 'relu', input_shape=(256, 256, 3)))
@@ -169,7 +169,7 @@ model.add(layers.Dense(4, activation='softmax'))
 model.summary()
 
 from keras import optimizers
-model.compile(loss = 'sparse_categorical_crossentropy', 
+model.compile(loss = 'sparse_categorical_crossentropy',
               optimizer=optimizers.RMSprop(lr=1e-4),
               metrics=['acc'])
 
@@ -187,7 +187,7 @@ validation_generator = test_datagen.flow_from_directory(
                     target_size = (256,256),
                     batch_size = 20,
                     class_mode = 'binary')
-                    
+
 for data_batch, labels_batch in train_generator:
     print('배치 데이터 크기: ', data_batch.shape)
     print('배치 레이블 크기: ', labels_batch.shape)
@@ -199,7 +199,7 @@ history = model.fit_generator(
             epochs = 10,
             validation_data = validation_generator,
             validation_steps = 20)
-            
+
 
 import matplotlib.pyplot as plt
 
@@ -299,7 +299,7 @@ train_generator = train_datagen.flow_from_directory(
                     train_dir,
                     target_size = (256,256),
                     batch_size = 20,
-                    class_mode = 'binary')
+                    class_mode = 'binary') #class_mode sparse_categorical 로 바꿔야하는거아니야?
 
 train_generator
 
@@ -308,7 +308,7 @@ validation_generator = test_datagen.flow_from_directory(
                     target_size = (256,256),
                     batch_size = 20,
                     class_mode = 'binary')
-                    
+
 history = model.fit_generator(
             train_generator,
             steps_per_epoch = 20,
@@ -404,11 +404,3 @@ test8.shape
 p_8 = model.predict(test8)
 p_8
 np.argmax(p_8[0])
-
-
-
-
-
-
-
-
