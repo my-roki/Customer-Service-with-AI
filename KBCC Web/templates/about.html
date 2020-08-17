@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block head %}
 {{ super() }}
+<style type="text/css">
+ a:link { color: red; text-decoration: none;}
+ a:visited { color: black; text-decoration: none;}
+ a:hover { color: blue; text-decoration: underline;}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -24,8 +29,8 @@
         <!-- 각 팀원 소개 페이지 -->
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">
-              <h3 class="card-title"> <strong> SK </strong> </h3>
+            <div class="card-header"> 
+              <h3 class="card-title"><span style="float-left;"><img src="../static/images/sk.png" width=40vh; border-radius: 70%;  overflow: hidden;></span> <strong> SK </strong> </h3>
               <div class="card-tools">
               </div>
             </div>
@@ -33,9 +38,9 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  Github
+                  Homepage
                   <span style="float:right;">
-                    주소
+                    <a href="https://github.com/DevSKtable" target="_blank">Github</a>
                   </span>
                 </p>
               </div>
@@ -56,7 +61,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> <strong> Rocky </strong> </h3>
+              <h3 class="card-title"><span style="float-left;"><img src="../static/images/roki.jpg" width=40vh; border-radius: 70%;  overflow: hidden;></span> <strong> Roki </strong> </h3>
               <div class="card-tools">
               </div>
             </div>
@@ -64,9 +69,9 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  Github
+                  Homepage
                   <span style="float:right;">
-                    주소
+                    <a href="https://github.com/my-roki" target="_blank">Github</a>
                   </span>
                 </p>
               </div>
@@ -87,7 +92,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> <strong> Yang </strong> </h3>
+              <h3 class="card-title"><span style="float-left;"><img src="../static/images/yang.jpg" width=40vh; border-radius: 70%;  overflow: hidden;></span><strong> Yang </strong> </h3>
               <div class="card-tools">
               </div>
             </div>
@@ -95,9 +100,9 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  Github
+                  Homepage
                   <span style="float:right;">
-                    주소
+                    <a href="https://github.com/yanghyeon408" target="_blank">Github</a>
                   </span>
                 </p>
               </div>
@@ -118,7 +123,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> <strong> Hui </strong> </h3>
+              <h3 class="card-title"><span style="float-left;"><img src="../static/images/hui.jpg" width=40vh; border-radius: 70%;  overflow: hidden;></span> <strong> Hui </strong> </h3>
               <div class="card-tools">
               </div>
             </div>
@@ -126,9 +131,9 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  Github
+                  Homepage
                   <span style="float:right;">
-                    주소
+                    <a href="https://github.com/dev-hui" target="_blank">Github</a>
                   </span>
                 </p>
               </div>

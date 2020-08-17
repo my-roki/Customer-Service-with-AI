@@ -21,6 +21,12 @@
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   
+  <style>
+  .col-md-6 {
+    cursor : move;
+  }
+  </style>
+  
   {% endblock %}
     
 </head>
@@ -51,6 +57,11 @@
         </ul>
       </div>
     </nav>
+
+  <script type="text/javascript" src="../static/js/drag.js">
+  dragElement(document.getElementByClass("col-md-6"));
+  </script>
+
 
         {% block content %}{% endblock %}
 
