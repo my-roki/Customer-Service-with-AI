@@ -27,8 +27,7 @@
                naverLogin.reprompt();
                return;
             }
-            alert( email ); // 로그인 한 이메일 ***@naver.com 이 출력된다.
-            //window.location.replace("http://127.0.0.1/test2.html");
+            alert( email +"님, 환영합니다!" ); 
          } else {
             console.log("callback 처리에 실패하였습니다.");
          }
@@ -79,7 +78,7 @@
                     Today :
                     <span class="float-right">오늘 방문 고객 수</span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-primary" style="width: 100%"></div>
+                      <div class="progress-bar bg-secondary" style="width: 100%"></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
@@ -88,7 +87,7 @@
                     This Week :
                     <span class="float-right">이번 주 방문 고객 수</span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-danger" style="width: 100%"></div>
+                      <div class="progress-bar bg-info" style="width: 100%"></div>
                     </div>
                   </div>
 
