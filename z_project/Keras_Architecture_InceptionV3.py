@@ -76,7 +76,7 @@ from keras import losses
 from keras import optimizers     
 
 # Inception 모듈 정의
-def inception_module_A(model, o_A1=64, r_A3=64, o_A3=128, r_A5=16, o_A5=32, pool_A=32):
+def inception_module_A(model, o_A1=64, r_A3=48, o_A3=64, r_A5=64, o_A5=96, pool_A=64):
     model_A1 = layers.Conv2D(o_A1, (1,1), strides=1, padding='same')(model)
     
     model_A2 = layers.Conv2D(r_A3, (1,1), strides=1, padding='same')(model)
@@ -92,26 +92,26 @@ def inception_module_A(model, o_A1=64, r_A3=64, o_A3=128, r_A5=16, o_A5=32, pool
     return layers.concatenate([model_A1, model_A2, model_A3, model_A4])
 
 
-def inception_module_B(model, o_B1=64, r_B3=64, o_B3=128, r_B5=16, o_B5=32, pool_B=32):
+def inception_module_B(model, o_B1=192, r_B3=192, o_B3=192, r_B5=192, o_B5=192, pool_B=192):
     model_B1 = layers.Conv2D(o_B1, (1,1), strides=1, padding='same')(model)
     
     model_B2 = layers.Conv2D(r_B3, (1,1), strides=1, padding='same')(model)
-    model_B2 = layers.Conv2D(o_B3, (1,3), strides=1, padding='same')(model_B2)
+    model_B2 = layers.Conv2D(r_B3, (1,3), strides=1, padding='same')(model_B2)
     model_B2 = layers.Conv2D(o_B3, (3,1), strides=1, padding='same')(model_B2)
     
     model_B3 = layers.Conv2D(r_B5, (1,1), strides=1, padding='same')(model)
-    model_B3 = layers.Conv2D(o_B5, (1,3), strides=1, padding='same')(model_B3)
-    model_B3 = layers.Conv2D(o_B5, (3,1), strides=1, padding='same')(model_B3)
-    model_B3 = layers.Conv2D(o_B5, (1,3), strides=1, padding='same')(model_B3)
+    model_B3 = layers.Conv2D(r_B5, (1,3), strides=1, padding='same')(model_B3)
+    model_B3 = layers.Conv2D(r_B5, (3,1), strides=1, padding='same')(model_B3)
+    model_B3 = layers.Conv2D(r_B5, (1,3), strides=1, padding='same')(model_B3)
     model_B3 = layers.Conv2D(o_B5, (3,1), strides=1, padding='same')(model_B3)
     
     model_B4 = layers.MaxPooling2D(pool_size=(3, 3), strides=1, padding='same')(model)
     model_B4 = layers.Conv2D(pool_B, (1,1), strides=1, padding='same')(model_B4)
     
     return layers.concatenate([model_B1, model_B2, model_B3, model_B4])    
-
     
-def inception_module_C(model, o_C1=64, r_C3=64, o_C3=128, r_C5=16, o_C5=32, pool_C=32):
+        
+def inception_module_C(model, o_C1=320, r_C3=384, o_C3=384, r_C5=448, o_C5=384, pool_C=192):
     model_C1 = layers.Conv2D(o_C1, (1,1), strides=1, padding='same')(model)
     
     model_C2 = layers.Conv2D(r_C3, (1,1), strides=1, padding='same')(model)
@@ -127,6 +127,7 @@ def inception_module_C(model, o_C1=64, r_C3=64, o_C3=128, r_C5=16, o_C5=32, pool
     model_C4 = layers.Conv2D(pool_C, (1,1), strides=1, padding='same')(model_C4)
     
     return layers.concatenate([model_C1, model_C2_1, model_C2_2, model_C3_1, model_C3_2, model_C4])    
+
 
 def Reduction(model, r_R3=64, o_R3=128, r_R5=128, o_R5=256):
     model_R1 = layers.Conv2D(r_R3, (1,1), strides=1, padding='same')(model)
@@ -144,52 +145,52 @@ def Reduction(model, r_R3=64, o_R3=128, r_R5=128, o_R5=256):
 input = layers.Input(shape=(256, 256, 3),  dtype='float32', name='input')
 
 model = layers.Conv2D(32, (3,3), strides=2, padding='same', name='block1_conv1')(input)
-model = layers.Conv2D(32, (3,3), strides=1, padding='same', name='block1_conv2')(model)
-model = layers.Conv2D(64, (3,3), strides=1, padding='same', name='block1_conv3')(model)
-model = layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding='same')(model)
+model = layers.Conv2D(32, (3,3), strides=1, padding='valid', name='block1_conv2')(model)
+model = layers.Conv2D(64, (3,3), strides=1, padding='valid', name='block1_conv3')(model)
+model = layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding='valid')(model)
 
-model = layers.Conv2D(80, (3,3), strides=1, padding='same', name='block2_conv1')(model)
-model = layers.Conv2D(192, (3,3), strides=1, padding='same', name='block2_conv2')(model)
-model = layers.Conv2D(192, (3,3), strides=1, padding='same', name='block2_conv3')(model)
-model = layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding='same')(model)
+model = layers.Conv2D(80, (3,3), strides=1, padding='valid', name='block2_conv1')(model)
+model = layers.Conv2D(192, (3,3), strides=2, padding='valid', name='block2_conv2')(model)
+model = layers.Conv2D(288, (3,3), strides=1, padding='same', name='block2_conv3')(model)
 
 model = inception_module_A(model, o_A1=64, r_A3=64, o_A3=128, r_A5=16, o_A5=32, pool_A=32)
 model = inception_module_A(model, o_A1=64, r_A3=64, o_A3=128, r_A5=32, o_A5=64, pool_A=32)
 model = inception_module_A(model, o_A1=64, r_A3=64, o_A3=128, r_A5=32, o_A5=64, pool_A=32)
-model = Reduction(model, r_R3=64, o_R3=128, r_R5=128, o_R5=256)
+model = Reduction(model, r_R3=256, o_R3=384, r_R5=64, o_R5=96)
 
-model = inception_module_B(model, o_B1=192, r_B3=96, o_B3=208, r_B5=16, o_B5=48, pool_B=64)
-model = inception_module_B(model, o_B1=160, r_B3=112, o_B3=224, r_B5=24, o_B5=64, pool_B=64)
-model = inception_module_B(model, o_B1=128, r_B3=128, o_B3=256, r_B5=24, o_B5=64, pool_B=64)
-model = inception_module_B(model, o_B1=112, r_B3=144, o_B3=288, r_B5=32, o_B5=64, pool_B=64)
-model = inception_module_B(model, o_B1=256, r_B3=160, o_B3=320, r_B5=32, o_B5=128, pool_B=128)
-model = Reduction(model, r_R3=64, o_R3=128, r_R5=128, o_R5=256)
+model = inception_module_B(model, o_B1=192, r_B3=128, o_B3=192, r_B5=128, o_B5=192, pool_B=192)
+model = inception_module_B(model, o_B1=192, r_B3=160, o_B3=192, r_B5=160, o_B5=192, pool_B=192)
+model = inception_module_B(model, o_B1=192, r_B3=160, o_B3=192, r_B5=160, o_B5=192, pool_B=192)
+model = inception_module_B(model, o_B1=192, r_B3=192, o_B3=192, r_B5=192, o_B5=192, pool_B=192)
+model = inception_module_B(model, o_B1=192, r_B3=192, o_B3=192, r_B5=192, o_B5=192, pool_B=192)
+model = Reduction(model, r_R3=192, o_R3=320, r_R5=128, o_R5=192)
 
-model = inception_module_C(model, o_C1=256, r_C3=160, o_C3=320, r_C5=32, o_C5=128, pool_C=128)
-model = inception_module_C(model, o_C1=384, r_C3=192, o_C3=384, r_C5=48, o_C5=128, pool_C=128)
-model = layers.MaxPooling2D(pool_size=(8, 8), strides=1)(model)
+model = inception_module_C(model, o_C1=320, r_C3=384, o_C3=384, r_C5=448, o_C5=384, pool_C=192)
+model = inception_module_C(model, o_C1=320, r_C3=384, o_C3=384, r_C5=448, o_C5=384, pool_C=192)
+model = layers.AveragePooling2D(pool_size=(8, 8), strides=1)(model)
+model = layers.Dropout(0.8)(model)
 
 model = layers.Dense(5)(model)
 output = layers.Activation('softmax')(model)
 
-googlenet = Model(input, output)
+InceptionV3 = Model(input, output)
 
 callback_list = [keras.callbacks.EarlyStopping(monitor = 'val_acc', patience = 5), 
-                    keras.callbacks.ModelCheckpoint(filepath='model.h5', monitor = 'val_loss', save_best_only = True)]
+                    keras.callbacks.ModelCheckpoint(filepath='InceptionV3.h5', monitor = 'val_loss', save_best_only = True)]
 
-googlenet.compile(loss = 'sparse_categorical_crossentropy', 
+InceptionV3.compile(loss = 'sparse_categorical_crossentropy', 
               optimizer = 'RMSProp',
               metrics = ['acc'])
       
-googlenet.summary()
+InceptionV3.summary()
 
 # Model Fit! 제발 잘 됐으면 좋.겠.다.
 import time # 훈련할 때마다 time을 가져와서 초기화를 시켜줘야 합니다!
 start = time.time() 
-history = googlenet.fit(train_image, train_label, epochs = 100, callbacks=callback_list,validation_data = (test_image,test_label))
+history = InceptionV3.fit(train_image, train_label, epochs = 100, callbacks=callback_list, validation_data = (test_image,test_label))
 time = time.time() - start
 print("테스트 시 소요 시간(초) : {}".format(time))
-print("전체 파라미터 수 : {}".format(sum([arr.flatten().shape[0] for arr in googlenet.get_weights()])))
+print("전체 파라미터 수 : {}".format(sum([arr.flatten().shape[0] for arr in InceptionV3.get_weights()])))
 
 
 # 모델 훈련이 잘 되었는지 그래프로 확입힙니다.     

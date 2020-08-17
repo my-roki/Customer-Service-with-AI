@@ -1,4 +1,4 @@
-#VGG 모델로 얼굴분류훈련
+#ResNet 모델로 얼굴분류훈련
 
 print("Hello Atom!")
 
@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 from sklearn.model_selection import train_test_split
+
 
 categories = os.listdir("./image")  #각 이미지에 라벨을 붙여줍니다(0부터 차례대로 시작합니다.)
 categories
@@ -68,59 +69,31 @@ for i in range(25):
     plt.xlabel(categories[train_label[i]])
 plt.show()
 
-# 모델 생성 VGG16
+# 모델 생성 ResNet18
+
+import tensorflow as tf
 import keras
-from keras import layers
-from keras import models
-from keras import optimizers     
+from keras.applications.resnet50 import ResNet50
 
-model = models.Sequential()
-model.add(layers.Input(shape = (256, 256, 3),  dtype='float32', name='input'))
-
-model.add(layers.Conv2D(64, (3,3), activation = 'relu', padding='same', name='block1_conv1'))
-model.add(layers.Conv2D(64, (3,3), activation = 'relu', padding='same', name='block1_conv2'))
-model.add(layers.MaxPooling2D((2,2)))
-
-model.add(layers.Conv2D(128, (3,3), activation = 'relu', padding ='same', name='block2_conv1'))
-model.add(layers.Conv2D(128, (3,3), activation = 'relu', padding ='same', name='block2_conv2'))
-model.add(layers.MaxPooling2D((2,2)))
-
-model.add(layers.Conv2D(256, (3,3), activation = 'relu', padding='same', name='block3_conv1'))
-model.add(layers.Conv2D(256, (3,3), activation = 'relu', padding='same', name='block3_conv2'))
-model.add(layers.Conv2D(256, (3,3), activation = 'relu', padding='same', name='block3_conv3'))
-model.add(layers.MaxPooling2D((2,2)))
-
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block4_conv1'))
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block4_conv2'))
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block4_conv3'))
-model.add(layers.MaxPooling2D((2,2)))
-
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block5_conv1'))
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block5_conv2'))
-model.add(layers.Conv2D(512, (3,3), activation = 'relu', padding='same', name='block5_conv3'))
-model.add(layers.MaxPooling2D((2,2)))
-
-model.add(layers.Flatten())
-model.add(layers.Dense(512, activation='relu'))
-model.add(layers.Dense(4, activation='softmax'))
-
+ResNet50 = ResNet50()
+ 
 callback_list = [keras.callbacks.EarlyStopping(monitor = 'val_acc', patience = 5), 
-                 keras.callbacks.ModelCheckpoint(filepath='VGG16.h5', monitor = 'val_loss', save_best_only = True)]
+                 keras.callbacks.ModelCheckpoint(filepath='ResNet50_lib.h5', monitor = 'val_loss', save_best_only = True)]
 
-model.compile(loss = 'sparse_categorical_crossentropy', 
+ResNet50.compile(loss = 'sparse_categorical_crossentropy', 
               optimizer = 'adam',
               metrics = ['acc'])
 
-model.summary()
+ResNet50.summary()
 
 
 # Model Fit! 제발 잘 됐으면 좋.겠.다.
 import time # 훈련할 때마다 time을 가져와서 초기화를 시켜줘야 합니다!
 start = time.time() 
-history = model.fit(train_image, train_label, epochs = 100, callbacks=callback_list, validation_data = (test_image,test_label))
+history = ResNet50.fit(train_image, train_label, epochs = 100, callbacks=callback_list,validation_data = (test_image,test_label))
 time = time.time() - start
 print("테스트 시 소요 시간(초) : {}".format(time))
-print("전체 파라미터 수 : {}".format(sum([arr.flatten().shape[0] for arr in model.get_weights()])))
+print("전체 파라미터 수 : {}".format(sum([arr.flatten().shape[0] for arr in ResNet50.get_weights()])))
 
 
 # 모델 훈련이 잘 되었는지 그래프로 확입힙니다.     

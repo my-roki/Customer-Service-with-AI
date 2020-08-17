@@ -88,7 +88,7 @@ input_bottom = Input( shape = input_shape)
 output_top = shared_network(input_top)
 output_bottom = shared_network(input_bottom)
 
-#우클리드 거리함수입니다. 두 이미지가 얼마나 닮았는지 판별하는 함수입니다.
+#유클리드 거리함수입니다. 두 이미지가 얼마나 닮았는지 판별하는 함수입니다.
 from keras import backend as K 
 def euclidian_distance(vectors):
     vector1, vector2 = vectors
@@ -96,7 +96,7 @@ def euclidian_distance(vectors):
     
     return K.sqrt(K.maximum(sum_square, K.epsilon()))
 
-#유클리드 거리함수로 두 이미지의 거리가 얼마나 되는지 출력해주는 함수입니다.
+#distance = 유클리드 거리함수로 두 이미지의 거리가 얼마나 되는지 출력해주는 변수입니다.
 #거리가 가까울수록 두 이미지는 일치하다고 판단합니다.
 from keras.layers import Lambda
 distance = Lambda(euclidian_distance, output_shape=(1,))([output_top, output_bottom])
