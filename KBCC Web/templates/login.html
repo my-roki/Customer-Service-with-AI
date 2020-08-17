@@ -38,6 +38,26 @@
                     </div>
                   </div>
 
+                  <div id="Login">
+                    <div id="naverIdLogin"></div>
+                    <script type="text/javascript">
+                      var naverLogin = new naver.LoginWithNaverId({
+                        clientId: "vNSuVbgtAB3fQe92WPVf",
+                        callbackUrl: "http://localhost/home",
+                        isPopup: false,
+                        loginButton: {
+                          color: "green",
+                          type: 4,
+                          height: 50
+                        }
+                      });
+                      naverLogin.init();
+                    </script>
+                    <p>
+                      </br>
+                    </p>
+                  </div>
+
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary"><a href="/home">Submit</a></button>
                   </div>
@@ -51,7 +71,9 @@
       </section>
     </div>
 
-  </div>
-</div>
 
-{% endblock %}
+
+
+  </div>
+
+  {% endblock %}

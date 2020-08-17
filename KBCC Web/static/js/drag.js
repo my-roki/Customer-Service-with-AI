@@ -27,4 +27,7 @@ function dragElement(elmnt) {
     document.onmousemove = null; 
     console.log("현재 요소의 위치 y는 " + elmnt.top +", x는" + elmnt.left + "입니다."); 
   } 
+  
+  dragElement(document.getElementByClass("card"));
+  
 }

@@ -21,10 +21,25 @@
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+  
   <style>
-  .col-md-6 {
-    cursor : move;
+  
+  .card-title {
+    text-align:justify;
   }
+  
+  #Login{
+    position: relative;
+  }
+  
+  #naverIdLogin{
+    position: absolute;  
+    left : 50%;
+    top : 30%;
+    transform: translate(-194%, -50%);
+  } 
+   
   </style>
   
   {% endblock %}
@@ -57,11 +72,6 @@
         </ul>
       </div>
     </nav>
-
-  <script type="text/javascript" src="../static/js/drag.js">
-  dragElement(document.getElementByClass("col-md-6"));
-  </script>
-
 
         {% block content %}{% endblock %}
 
