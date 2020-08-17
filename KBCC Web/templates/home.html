@@ -5,190 +5,206 @@
 
 {% block content %}
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h4 class="m-0 text-dark"> Home </h4>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script>
+   var naverLogin = new naver.LoginWithNaverId(
+      {
+         clientId: "vNSuVbgtAB3fQe92WPVf",
+         callbackUrl: "http://localhost/home",
+         isPopup: false,
+         callbackHandle: true
+      }
+   );
+   naverLogin.init();
+
+   window.addEventListener('load', function () {
+      naverLogin.getLoginStatus(function (status) {
+
+         if (status) {
+            var email = naverLogin.user.getEmail();
+            if( email == undefined || email == null) {
+               alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+               naverLogin.reprompt();
+               return;
+            }
+            alert( email +"님, 환영합니다!" ); 
+         } else {
+            console.log("callback 처리에 실패하였습니다.");
+         }
+      });
+   });
+</script>
+
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h4 class="m-0 text-dark"> Home </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><strong>시간대별 고객 방문 추이</strong> </h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <p class="text-center"> <strong> 현재 날짜 </strong> </p>
+
+                  <div class="chart">
+                    <!-- Sales Chart Canvas -->
+                    <canvas id="salesChart" height="180" style="height: 300px;"></canvas>
+                  </div>
+                  <!-- /.chart-responsive -->
+                </div>
+                <!-- /.col -->
+
+                <div class="col-md-4">
+                  <br class="text-center">
+                  <strong> 고객 방문 통계 </strong>
+                  <p></p>
+
+                  <div class="progress-group">
+                    Today :
+                    <span class="float-right">오늘 방문 고객 수</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar bg-secondary" style="width: 100%"></div>
+                    </div>
+                  </div>
+                  <!-- /.progress-group -->
+
+                  <div class="progress-group">
+                    This Week :
+                    <span class="float-right">이번 주 방문 고객 수</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar bg-info" style="width: 100%"></div>
+                    </div>
+                  </div>
+
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    This Month :
+                    <span class="float-right">이번 달 방문 고객 수</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar bg-success" style="width: 100%"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- /.content-header -->
 
-      <!-- Main content -->
-      <section class="content">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title"><strong>시간대별 고객 방문 추이</strong>  </h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <p class="text-center"> <strong> 현재 날짜 </strong> </p>
+      <div class="row">
 
-                      <div class="chart">
-                        <!-- Sales Chart Canvas -->
-                        <canvas id="salesChart" height="180" style="height: 300px;"></canvas>
-                      </div>
-                      <!-- /.chart-responsive -->
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="col-md-4">
-                      <br class="text-center">
-                      <strong> 고객 방문 통계 </strong>
-                      </p>
-
-                      <div class="progress-group">
-                        Today :
-                        <span class="float-right">오늘 방문 고객 수</span>
-                        <div class="progress progress-sm">
-                          <div class="progress-bar bg-primary" style="width: 100%"></div>
-                        </div>
-                      </div>
-                      <!-- /.progress-group -->
-
-                      <div class="progress-group">
-                        This Week :
-                        <span class="float-right">이번 주 방문 고객 수</span>
-                        <div class="progress progress-sm">
-                          <div class="progress-bar bg-danger" style="width: 100%"></div>
-                        </div>
-                      </div>
-
-                      <!-- /.progress-group -->
-                      <div class="progress-group">
-                        This Month :
-                        <span class="float-right">이번 달 방문 고객 수</span>
-                        <div class="progress progress-sm">
-                          <div class="progress-bar bg-success" style="width: 100%"></div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <!-- /.col -->
-                  </div>
-                  <!-- /.row -->
-                </div>
-                <!-- ./card-body -->
+        <!-- 주문 통계 -->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header border-transparent">
+              <h3 class="card-title"><strong>주문 통계</strong></h3>
+              <div class="card-tools">
               </div>
-              <!-- /.card -->
             </div>
-            <!-- /.col -->
+
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table m-0">
+                  <thead>
+                    <tr>
+                      <th style width="5%"></th>
+                      <th style width="30%"> Menu </th>
+                      <th style width="30%"> Price </th>
+                      <th style width="30%"> Order </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td> A Menu </td>
+                      <td> 가격 </td>
+                      <td> 판매량 </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td> B Menu </td>
+                      <td> 가격 </td>
+                      <td> 판매량 </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td> C Menu </td>
+                      <td> 가격 </td>
+                      <td> 판매량 </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td> D Menu </td>
+                      <td> 가격 </td>
+                      <td> 판매량 </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
-
-
-          <div class="row">
-
-            <!-- 주문 통계 -->
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header border-transparent">
-                  <h3 class="card-title"><strong>주문 통계</strong></h3>
-                  <div class="card-tools">
-                  </div>
-                </div>
-                <!-- /.card-header -->
-
-                <div class="card-body p-0">
-                  <div class="table-responsive">
-                    <table class="table m-0">
-                      <thead>
-                        <tr>
-                          <th style width="5%"></th>
-                          <th style width="30%"> Menu </th>
-                          <th style width="30%"> Price </th>
-                          <th style width="30%"> Order </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td></td>
-                          <td> A Menu </td>
-                          <td> 가격 </td>
-                          <td> 판매량 </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td> B Menu </td>
-                          <td> 가격 </td>
-                          <td> 판매량 </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td> C Menu </td>
-                          <td> 가격 </td>
-                          <td> 판매량 </td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td> D Menu </td>
-                          <td> 가격 </td>
-                          <td> 판매량 </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 매출 통계-->
-            <div class="col-md-6">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title"> <strong>매출 통계</strong> </h3>
-                  <div class="card-tools">
-                  </div>
-                </div>
-
-                <div class="card-body p-4">
-                  <div class="table-responsive">
-                    <p class="text-muted text-xl" style="text-align:left;">
-                      Today
-                      <span style="float:right;">
-                        오늘 매출액
-                      </span>
-                    </p>
-                  </div>
-
-                  <div class="table-responsive">
-                    <p class="text-muted text-xl" style="text-align:left;">
-                      This Week
-                      <span style="float:right;">
-                        이번 주 매출액
-                      </span>
-                    </p>
-                  </div>
-
-                  <div class="table-responsive">
-                    <p class="text-muted text-xl" style="text-align:left;">
-                      This Month
-                      <span style="float:right;">
-                        이번 달 매출액
-                      </span>
-                    </p>
-                  </div>
-                  <!-- /.d-flex -->
-                </div>
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col -->
-          </div>
-
         </div>
-        <!-- /.row -->
-      </section>
+
+        <!-- 매출 통계-->
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"> <strong>매출 통계</strong> </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body p-4">
+              <div class="table-responsive">
+                <p class="text-muted text-l" style="text-align:left;">
+                  Today
+                  <span style="float:right;">
+                    오늘 매출액
+                  </span>
+                </p>
+              </div>
+
+              <div class="table-responsive">
+                <p class="text-muted text-l" style="text-align:left;">
+                  This Week
+                  <span style="float:right;">
+                    이번 주 매출액
+                  </span>
+                </p>
+              </div>
+
+              <div class="table-responsive">
+                <p class="text-muted text-l" style="text-align:left;">
+                  This Month
+                  <span style="float:right;">
+                    이번 달 매출액
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </section>
+</div>
 
 {% endblock %}
