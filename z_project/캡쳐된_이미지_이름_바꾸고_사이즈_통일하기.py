@@ -17,8 +17,12 @@ for i in custlist:
         dst = cv2.resize(img, dsize=(256, 256), interpolation=cv2.INTER_AREA)
         cv2.imwrite((path + j), dst)
         
-        src = os.path.join(path, j) # 이미지 이름 바꾸기
-        dst = i+ str(num) + '.jpg'
-        dst = os.path.join(path, dst)
-        os.rename(src, dst)    
-        num += 1   
+        try:
+            src = os.path.join(path, j) # 이미지 이름 바꾸기
+            dst = i+ str(num) + '.jpg'
+            dst = os.path.join(path, dst)
+            os.rename(src, dst)   
+        except:
+            pass
+        finally:     
+            num += 1   

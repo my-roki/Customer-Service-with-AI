@@ -135,11 +135,8 @@ output = layers.Activation('softmax')(model)
 
 googlenet = Model(input, output)
 
-callback_list = [keras.callbacks.EarlyStopping(monitor = 'val_acc',
-                                                patience = 5),
-                 keras.callbacks.ModelCheckpoint(filepath='model.h5',
-                                                    monitor = 'val_loss',
-                                                    save_best_only = True)]
+callback_list = [keras.callbacks.EarlyStopping(monitor = 'val_acc', patience = 5),
+                 keras.callbacks.ModelCheckpoint(filepath='GoogLeNet.h5', monitor = 'val_loss', save_best_only = True)]
 
 googlenet.compile(loss = 'sparse_categorical_crossentropy', 
               optimizer = 'adam',
