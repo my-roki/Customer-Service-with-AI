@@ -4,7 +4,30 @@
 {% endblock %}
 
 {% block content %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['시간', '방문고객수'],
+          ['07',0]
+          {% for row in counts %}
+              ,[{{ row[0] }},{{row[1]}}]
+          {% endfor %}
+        ]);
+
+        var options = {
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script>
    var naverLogin = new naver.LoginWithNaverId(
@@ -63,7 +86,7 @@
 
                   <div class="chart">
                     <!-- Sales Chart Canvas -->
-                    <canvas id="salesChart" height="180" style="height: 300px;"></canvas>
+                    <div id="curve_chart"></div>
                   </div>
                   <!-- /.chart-responsive -->
                 </div>
@@ -131,30 +154,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td> A Menu </td>
-                      <td> 가격 </td>
-                      <td> 판매량 </td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td> B Menu </td>
-                      <td> 가격 </td>
-                      <td> 판매량 </td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td> C Menu </td>
-                      <td> 가격 </td>
-                      <td> 판매량 </td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td> D Menu </td>
-                      <td> 가격 </td>
-                      <td> 판매량 </td>
-                    </tr>
+                    {% for row in menu_count %}
+                      <tr>
+                        <td></td>    
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                      </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
@@ -176,7 +183,7 @@
                 <p class="text-muted text-l" style="text-align:left;">
                   Today
                   <span style="float:right;">
-                    오늘 매출액
+                    {{cust_count[0][1]}}
                   </span>
                 </p>
               </div>
@@ -185,7 +192,7 @@
                 <p class="text-muted text-l" style="text-align:left;">
                   This Week
                   <span style="float:right;">
-                    이번 주 매출액
+                    {{cust_count[1][1]}}
                   </span>
                 </p>
               </div>
@@ -194,7 +201,7 @@
                 <p class="text-muted text-l" style="text-align:left;">
                   This Month
                   <span style="float:right;">
-                    이번 달 매출액
+                    {{cust_count[2][1]}}
                   </span>
                 </p>
               </div>

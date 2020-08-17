@@ -25,7 +25,7 @@
         <div class="col-md-5">
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title"> <strong>customer pic</strong> </h5>
+              <h5 class="card-title"> <strong>{{u_data[0][3]}}</strong> </h5>
             </div>
             <div class="card-body">
               <!-- 여기다가 DB에서 가져올 수 있는 사진 넣으면 됨! -->
@@ -58,27 +58,20 @@
 
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  1월 1일
-                  <span style="float:right;">
-                    A Menu / 5,000원<br />
-                    B Menu / 6,000원
-                  </span>
+                  {% for u_history in u_data %}
+                  {{u_history[0][:4]}}년 {{u_history[0][5:7]}}월 {{u_history[0][8:]}}일
+                      <span style="float:right;">
+                        {{ u_history[1] }} / {{ u_history[2] }}<br />
+                      </span>
+                      </p>
+                      <p>
+                        <br />
+                  {% endfor %}
                 </p>
               </div>
 
-              <p>
-                <br />
-              </p>
 
-              <div class="table-responsive">
-                <p class="text-muted text-l" style="text-align:left;">
-                  2월 2일
-                  <span style="float:right;">
-                    C Menu / 7,000원<br />
-                    D Menu / 8,000원
-                  </span>
-                </p>
-              </div>
+
 
             </div>
           </div>
@@ -96,9 +89,10 @@
               <div class="table-responsive">
                 <p class="text-muted">
                   <!-- 여기다가 최근 방문 이력 출력하면 됨!! -->
-                  1월 1일 <br />
-                  2월 2일 <br />
-                  3월 3일
+                  {% for u_history in u_data[:3] %}
+                      {{u_history[0][:4]}}년 {{u_history[0][5:7]}}월 {{u_history[0][8:]}}일 <br />
+                  {% endfor %}
+                  
                 </p>
               </div>
 
