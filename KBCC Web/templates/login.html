@@ -1,77 +1,223 @@
-{% extends 'base.html' %}
-{% block head %}
-{{ super() }}
-{% endblock %}
+<!DOCTYPE html>
 
-{% block content %}
+<html lang="ko">
 
-<div class="content-wrapper">
-  
-  <div class="content-header">
-    <div class="container">
-      <div class="row mb-1">
-        <div class="col-sm-6">
-          <h4 class="m-0 text-dark"> </h4>
-        </div>
+<head>
+  <!-- 아이콘 출처 : https://icon-icons.com/ko/아이콘/경찰-자동차-빛/100480 -->
+  <!-- 로고 출처 : https://pixabay.com/images/id-2462427/ -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <title> KBCC </title>
+
+
+  <!-- Google Font: Source Sans Pro -->
+  <!-- <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+     -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" , href="../static/css/adminlte.min.css">
+  <!-- IonIcons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+
+  <style>
+    .card-title {
+      text-align: justify;
+    }
+
+    #Login {
+      position: relative;
+    }
+
+    #naverIdLogin {
+      position: relative;
+      left: 4%;
+      top: 15%;
+    }
+
+    body {
+      margin: 0;
+      background-image: url("../static/images/blue.jpg") !important;
+      width: 100%;
+      height: auto;
+    }
+
+
+    .wrapper {
+      background-color: #424242;
+    }
+
+    .footertext {
+      color: #fff;
+    }
+
+    .nav-link {
+      color: #fff;
+    }
+
+    .loginheader {
+      color: #fff;
+      height: auto;
+      line-height: 5.5vh;
+      text-align: 5.5vh;
+    }
+
+    .card-header h3 {
+      color: darkblue;
+    }
+
+    .col-md-4 {
+      position: relative;
+      bottom: 14%;
+      left: 33.5%;
+    }
+
+    .loginwelcome {
+      position: relative;
+    }
+
+    .loginwelcome p {
+      font-size: 15vh;
+      text-align: center;
+    }
+
+    .content-wrapper {
+      flex-direction: col;
+      flex-wrap: wrap;
+    }
+  </style>
+
+</head>
+
+<body class="hold-transition layout-top-nav">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
+      <div class="container">
+        <ul class="navbar-nav">
+          <a href="#" class="navbar-brand">
+            <img src="../static/images/logo_2.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light"><strong> KBCC</strong></span>
+          </a>
+          <span class="loginheader">
+            &nbsp&nbsp서비스를 이용하시려면 로그인 해 주세요
+          </span>
+        </ul>
       </div>
-    </div>
-  </div>
+    </nav>
 
-  <div class="content">
-    <div class="container">
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-10">
-              <div class="card card-primary">
-                <div class="card-header">
-                  <h3 class="card-title text-xl"> Welcome to KBCC System </h3>
-                </div>
-                <form id="quickForm">
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">ID/Email</label>
-                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter ID/Email">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                  </div>
+    <div class="content-wrapper">
 
-                  <div id="Login">
-                    <div id="naverIdLogin"></div>
-                    <script type="text/javascript">
-                      var naverLogin = new naver.LoginWithNaverId({
-                        clientId: "vNSuVbgtAB3fQe92WPVf",
-                        callbackUrl: "http://localhost/home",
-                        isPopup: false,
-                        loginButton: {
-                          color: "green",
-                          type: 4,
-                          height: 50
-                        }
-                      });
-                      naverLogin.init();
-                    </script>
-                    <p>
-                      </br>
-                    </p>
-                  </div>
-
-                  <div class="card-footer">
-                    <button type="submit" class="btn btn-primary"><a href="/home">Submit</a></button>
-                  </div>
-                </form>
-
-              </div>
-
-            </div>
+      <div class="content">
+        <div class="container">
+          <div class="loginwelcome">
+            <p>L&nbspO&nbspG&nbspI&nbspN</p>
           </div>
         </div>
-      </section>
+
+          <section class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title text-xl"></h3>
+                    </div>
+                    <form id="quickForm">
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">ID/Email</label>
+                          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter ID/Email">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                      </div>
+
+                      <div id="Login">
+                        <div id="naverIdLogin"></div>
+                        <script type="text/javascript">
+                          var naverLogin = new naver.LoginWithNaverId({
+                            clientId: "vNSuVbgtAB3fQe92WPVf",
+                            callbackUrl: "http://localhost/home",
+                            isPopup: false,
+                            loginButton: {
+                              color: "green",
+                              type: 4,
+                              height: 50
+                            }
+                          });
+                          naverLogin.init();
+                        </script>
+                        <p>
+                          </br>
+                        </p>
+                      </div>
+
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary"><a href="/home">로그인</a></button>
+                        <span style="float:right;"><button class="btn btn-primary"><a href="/register">회원가입</a></button></span>
+                      </div>
+                    </form>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+
+    <!-- Main Footer -->
+    <div class="container">
+      <footer class="main-footer">
+        <div class="footertext">
+          <strong>Copyright &copy; 2020 KBCC </strong> All rights reserved.
+          <span style="float:right;"> Have a great day ! </span>
+        </div>
+      </footer>
     </div>
   </div>
-  </div>
+  <!-- /.content-wrapper -->
 
-  {% endblock %}
+
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <script src="../static/js/adminlte.js"></script>
+
+  <!-- PAGE PLUGINS -->
+  <!-- jQuery Mapael -->
+  <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+  <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+  <script src="../plugins/raphael/raphael.min.js"></script>
+  <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+  <!-- ChartJS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+
+  <!-- AdminLTE for demo purposes -->
+  <script src="../stactic/js/demo.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../static/js/pages/dashboard2.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="../static/js/pages/dashboard3.js"></script>
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+
+
+</body>
+
+</html>
