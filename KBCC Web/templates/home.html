@@ -1,33 +1,43 @@
 {% extends 'base.html' %}
 {% block head %}
 {{ super() }}
+<META HTTP-EQUIV="refresh" CONTENT="60">
 {% endblock %}
 
 {% block content %}
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['시간', '방문고객수'],
-          ['07',0]
-          {% for row in counts %}
-              ,[{{ row[0] }},{{row[1]}}]
-          {% endfor %}
-        ]);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['시간', '방문고객수'],
+      ['07',0]
+      {% for row in counts %}
+          ,[{{ row[0] }},{{row[1]}}]
+      {% endfor %}
+    ]);
 
-        var options = {
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+    var options = { 
+      curveType: 'function',
+      legend: { position: 'bottom' },
+      height:200,
+      lineWidth: 10,
+      colors: ['#ff8fa9'],
+      animation:{
+      startup: true,
+      duration: 1500,
+      easing: 'inAndOut'},
+      };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-        chart.draw(data, options);
-      }
-    </script>
+    chart.draw(data, options);
+  }
+</script>
+    
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script>
    var naverLogin = new naver.LoginWithNaverId(
@@ -46,7 +56,7 @@
          if (status) {
             var email = naverLogin.user.getEmail();
             if( email == undefined || email == null) {
-               alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+               alert("이메일은 필수정보입니다. 정보 제공에 동의해주세요.");
                naverLogin.reprompt();
                return;
             }
@@ -59,6 +69,7 @@
 </script>
 
 <div class="content-wrapper">
+  
   <div class="content-header">
     <div class="container">
       <div class="row mb-2">
@@ -76,21 +87,17 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><strong>시간대별 고객 방문 추이</strong> </h3>
+              <h3 class="card-title"><strong>실시간 고객 방문 추이</strong> </h3>
             </div>
-            <!-- /.card-header -->
             <div class="card-body">
               <div class="row">
                 <div class="col-md-8">
-                  <p class="text-center"> <strong> 현재 날짜 </strong> </p>
-
+                  <p class="text-left">
+                  <strong> &nbsp&nbsp&nbsp&nbsp실시간 고객 방문 차트 </strong></p>
                   <div class="chart">
-                    <!-- Sales Chart Canvas -->
                     <div id="curve_chart"></div>
                   </div>
-                  <!-- /.chart-responsive -->
-                </div>
-                <!-- /.col -->
+              </div>
 
                 <div class="col-md-4">
                   <br class="text-center">
@@ -99,29 +106,30 @@
 
                   <div class="progress-group">
                     Today :
-                    <span class="float-right">오늘 방문 고객 수</span>
-                    <div class="progress progress-sm">
-                      <div class="progress-bar bg-secondary" style="width: 100%"></div>
+                    <span class="float-right">{{cust_count[0][0]}} 명&nbsp&nbsp&nbsp&nbsp</span>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-warning" style="width: 100%" ></div>
                     </div>
                   </div>
                   <!-- /.progress-group -->
-
+                  <p></p>
                   <div class="progress-group">
                     This Week :
-                    <span class="float-right">이번 주 방문 고객 수</span>
-                    <div class="progress progress-sm">
-                      <div class="progress-bar bg-info" style="width: 100%"></div>
-                    </div>
-                  </div>
-
-                  <!-- /.progress-group -->
-                  <div class="progress-group">
-                    This Month :
-                    <span class="float-right">이번 달 방문 고객 수</span>
-                    <div class="progress progress-sm">
+                    <span class="float-right">{{cust_count[1][0]}} 명&nbsp&nbsp&nbsp&nbsp</span>
+                    <div class="progress progress-xs">
                       <div class="progress-bar bg-success" style="width: 100%"></div>
                     </div>
                   </div>
+                  <p></p>
+                  <!-- /.progress-group -->
+                  <div class="progress-group">
+                    This Month :
+                    <span class="float-right">{{cust_count[2][0]}} 명&nbsp&nbsp&nbsp&nbsp</span>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-primary" style="width: 100%"></div>
+                    </div>
+                  </div>
+                
 
                 </div>
               </div>
@@ -137,7 +145,7 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header border-transparent">
-              <h3 class="card-title"><strong>주문 통계</strong></h3>
+              <h3 class="card-title"><strong> 최고 인기 메뉴 </strong></h3>
               <div class="card-tools">
               </div>
             </div>
@@ -147,10 +155,10 @@
                 <table class="table m-0">
                   <thead>
                     <tr>
-                      <th style width="5%"></th>
+                      <th style width="10%"></th>
                       <th style width="30%"> Menu </th>
                       <th style width="30%"> Price </th>
-                      <th style width="30%"> Order </th>
+                      <th style width="20%"> Order </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -159,7 +167,7 @@
                         <td></td>    
                         <td>{{ row[0] }}</td>
                         <td>{{ row[1] }}</td>
-                        <td>{{ row[2] }}</td>
+                        <td>&nbsp&nbsp&nbsp&nbsp&nbsp{{ row[2] }}</td>
                       </tr>
                     {% endfor %}
                   </tbody>
@@ -181,7 +189,7 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  Today
+                  <strong>&nbsp&nbsp&nbsp Today</strong>
                   <span style="float:right;">
                     {{cust_count[0][1]}}
                   </span>
@@ -190,7 +198,7 @@
 
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  This Week
+                  <strong>This Week</strong>
                   <span style="float:right;">
                     {{cust_count[1][1]}}
                   </span>
@@ -199,7 +207,7 @@
 
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  This Month
+                  <strong>This Month</strong>
                   <span style="float:right;">
                     {{cust_count[2][1]}}
                   </span>

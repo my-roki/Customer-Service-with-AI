@@ -28,14 +28,10 @@
               <h5 class="card-title"> <strong>{{u_data[0][3]}}</strong> </h5>
             </div>
             <div class="card-body">
-              <!-- 여기다가 DB에서 가져올 수 있는 사진 넣으면 됨! -->
               <img id="bg", width="100%" src="{{ url_for('video_feed') }}">
-              <!-- <img src="../static/images/minami.png" width="100%"> -->
             </div>
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
         <div class="col-md-7">
           <div class="card">
             <div class="card-header">
@@ -47,18 +43,17 @@
             <div class="card-body p-4">
               <div class="table-responsive">
                 <p class="text-muted text-l" style="text-align:left;">
-                  방문 날짜
+                  <strong>&nbsp &nbsp &nbsp &nbsp 방문 날짜</strong> 
                   <span style="float:right;">
-                    방문 시 주문 내역, 주문 액수 등등
+                    <strong>주문 내역 / 주문 액수</strong>  
                   </span>
                 </p>
               </div>
               <p>
-                <br />
               </p>
 
               <div class="table-responsive">
-                <p class="text-muted text-l" style="text-align:left;">
+                <p class="text-l" style="text-align:left;">
                   {% for u_history in u_data %}
                   {{u_history[0][:4]}}년 {{u_history[0][5:7]}}월 {{u_history[0][8:]}}일
                       <span style="float:right;">
@@ -70,15 +65,9 @@
                   {% endfor %}
                 </p>
               </div>
-
-
-
-
             </div>
           </div>
-          <!-- /.card -->
         </div>
-        <!-- /.col -->
 
         <div class="col-md-5">
           <div class="card">

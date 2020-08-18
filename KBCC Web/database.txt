@@ -1,0 +1,140 @@
+create database kosa_fpht;
+use kosa_fpht;
+
+DROP TABLE IF EXISTS Order_Table;
+DROP TABLE IF EXISTS Menu_Table;
+DROP TABLE IF EXISTS User_Table;
+DROP TABLE IF EXISTS Company_Table;
+
+
+
+
+/* Create Tables */
+
+CREATE TABLE Company_Table
+(
+	co_no int NOT NULL AUTO_INCREMENT,
+	co_id varchar(20) NOT NULL,
+	co_pw varchar(128) NOT NULL,
+	co_name varchar(30) NOT NULL,
+	co_owner varchar(20) NOT NULL,
+	reg_date date,
+	PRIMARY KEY (co_no),
+	UNIQUE (co_id)
+);
+
+
+CREATE TABLE Menu_Table
+(
+	product_no int NOT NULL,
+	product_name varchar(50) NOT NULL,
+	product_price int NOT NULL,
+	co_no int NOT NULL,
+	PRIMARY KEY (product_no)
+);
+
+
+CREATE TABLE Order_Table
+(
+	no int NOT NULL,
+	reg_time datetime NOT NULL,
+	order_amount int NOT NULL,
+	co_no int NOT NULL,
+	user_no int NOT NULL,
+	product_no int NOT NULL,
+	UNIQUE (no, reg_time)
+);
+
+
+CREATE TABLE User_Table
+(
+	user_no int NOT NULL AUTO_INCREMENT,
+	user_id varchar(30) NOT NULL,
+	user_pwd varchar(128) NOT NULL,
+	user_name varchar(20) NOT NULL,
+	user_phone varchar(40),
+	user_regdate date NOT NULL,
+	co_no int NOT NULL,
+	PRIMARY KEY (user_no),
+	UNIQUE (user_id)
+);
+
+
+
+/* Create Foreign Keys */
+
+ALTER TABLE Menu_Table
+	ADD FOREIGN KEY (co_no)
+	REFERENCES Company_Table (co_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Order_Table
+	ADD FOREIGN KEY (co_no)
+	REFERENCES Company_Table (co_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE User_Table
+	ADD FOREIGN KEY (co_no)
+	REFERENCES Company_Table (co_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Order_Table
+	ADD FOREIGN KEY (product_no)
+	REFERENCES Menu_Table (product_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Order_Table
+	ADD FOREIGN KEY (user_no)
+	REFERENCES User_Table (user_no)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+
+insert into Company_Table values(null, 'kb_cb', '1111', 'cb', 'CEO', '2019-04-22');
+
+insert into Menu_Table values(1, 'Americano', 2500, 1);
+insert into Menu_Table values(2, 'Latte', 3000, 1);
+insert into Menu_Table values(3, 'LemonIceTea', 4000, 1);
+insert into Menu_Table values(4, 'LemonAid', 4500, 1);
+insert into Menu_Table values(5, 'BlueLemonAid', 4500, 1);
+
+insert into User_Table values(null, 'roki@gmail.com', '1111', 'roki', '010-0000-0000', '2020-04-17', 1);
+insert into User_Table values(null, 'hyuni@gmail.com', '1111', 'hyuni', '010-1111-1111', '2020-05-11', 1);
+insert into User_Table values(null, 'hui@gmail.com', '1111', 'hui', '010-2222-2222', '2020-03-09', 1);
+insert into User_Table values(null, 'kyuni@gmail.com', '1111', 'kyuni', '010-3333-3333', '2020-02-28', 1);
+
+
+insert into Order_Table values(1, '2020-04-17 09:00:00', 3000, 1, 1, 2);
+insert into Order_Table values(2, '2020-04-17 09:20:00', 2500, 1, 4, 1);
+insert into Order_Table values(3, '2020-04-17 10:12:39', 3000, 1, 2, 2);
+insert into Order_Table values(4, '2020-04-18 09:00:00', 3000, 1, 1, 2);
+insert into Order_Table values(5, '2020-04-18 09:05:00', 3000, 1, 4, 2);
+insert into Order_Table values(6, '2020-04-19 09:00:00', 3000, 1, 1, 2);
+insert into Order_Table values(7, '2020-04-19 09:03:00', 4000, 1, 4, 3);
+insert into Order_Table values(8, '2020-04-19 12:40:03', 3000, 1, 2, 2);
+insert into Order_Table values(9, '2020-04-19 12:40:03', 2500, 1, 2, 1);
+insert into Order_Table values(10, '2020-08-10 09:00:00', 3000, 1, 1, 2);
+insert into Order_Table values(11, '2020-08-14 09:50:00', 4500, 1, 4, 4);
+insert into Order_Table values(12, '2020-08-17 09:00:00', 3000, 1, 1, 2);
+insert into Order_Table values(13, '2020-08-17 09:20:00', 2500, 1, 4, 1);
+insert into Order_Table values(14, '2020-08-17 10:12:39', 3000, 1, 2, 2);
+insert into Order_Table values(15, '2020-08-17 12:40:03', 2500, 1, 2, 1);
+
+select * from company_table;
+select * from menu_table;
+select * from user_table;
+select * from order_table;

@@ -14,8 +14,11 @@
   {% block head %}
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
+  <!-- <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+     -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
@@ -29,6 +32,8 @@
   
   <style>
   
+  
+  
   .card-title {
     text-align:justify;
   }
@@ -38,11 +43,22 @@
   }
   
   #naverIdLogin{
-    position: absolute;  
-    left : 50%;
-    top : 30%;
-    transform: translate(-194%, -50%);
+    position: relative;  
+    left : 2%;
+    top : 15%;
   } 
+   
+  .wrapper{
+     background-color: #424242;
+   }
+   
+   .footertext{
+     color: #fff;
+   }
+   
+   .nav-link{
+    color: #fff;
+  }
    
   </style>
   
@@ -54,12 +70,12 @@
   <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
       <div class="container">
         <ul class="navbar-nav">
           <a href="/about" class="navbar-brand">
             <img src="../static/images/logo_2.jpg" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light"> KBCC </span>
+            <span class="brand-text font-weight-light"><strong> KBCC</strong></span>
           </a>
           <li class="nav-item d-none d-sm-inline-block">
             <a href="/home" class="nav-link">Home</a>
@@ -83,12 +99,11 @@
     <!-- Main Footer -->
     <div class="container">
       <footer class="main-footer">
-        <strong>Copyright &copy; 2020 KBCC </strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-          Have a nice day!
-        </div>
-      </footer>
+      <div class = "footertext">
+        <strong>Copyright &copy; 2020 KBCC </strong> All rights reserved.
+        <span style="float:right;"> Have a great day ! </span> 
+      </div>
+     </footer>
     </div>
 
 

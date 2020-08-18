@@ -17,8 +17,6 @@ def user_history(user_no):
         history_id = (user_no,)
         cursor.execute(history_sql, history_id)
         rows = cursor.fetchall()
-        if rows == []:
-            rows = [["-","-","-","신규고객님"]]
         print('Total Row(s):', cursor.rowcount)
         return rows
     except Error as e:
