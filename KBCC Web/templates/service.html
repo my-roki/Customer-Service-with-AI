@@ -29,7 +29,8 @@
             </div>
             <div class="card-body">
               <!-- 여기다가 DB에서 가져올 수 있는 사진 넣으면 됨! -->
-              <img src="../static/images/minami.png" width="100%">
+              <img id="bg", width="100%" src="{{ url_for('video_feed') }}">
+              <!-- <img src="../static/images/minami.png" width="100%"> -->
             </div>
           </div>
           <!-- /.col -->
