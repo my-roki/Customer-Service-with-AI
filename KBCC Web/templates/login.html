@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="ko">
+<html>
 
 <head>
-  <!-- 아이콘 출처 : https://icon-icons.com/ko/아이콘/경찰-자동차-빛/100480 -->
-  <!-- 로고 출처 : https://pixabay.com/images/id-2462427/ -->
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <title> KBCC </title>
 
-
-  <!-- Google Font: Source Sans Pro -->
-  <!-- <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-     -->
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
@@ -26,16 +15,164 @@
   <link rel="stylesheet" , href="../static/css/adminlte.min.css">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
   <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-
   <style>
-    .card-title {
-      text-align: justify;
+  
+  a { text-decoration:none !important; color:black; } 
+  a:hover { text-decoration:none !important }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Nanum Myeongjo;
     }
 
-    #Login {
+    .content-wrapper{
+      background-image:url(../static/images/blue.jpg);
+      text-align: center;
       position: relative;
+    }
+    
+
+    .form-wrap-login {
+      width: 24vw;
+      height: 60vh;
+      position: relative;
+      margin: 10% auto;
+      margin-top:0;
+      margin-bottom:2vh;
+      background: #fff;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .button-wrap-login {
+      width: 18.5vw;
+      height: 6vh;
+      margin-top: 5vh;
+      margin-bottom: 3vh;
+      margin-left: 3vw;
+      margin-right: 0;
+      position: relative;
+      box-shadow: 0 0 10vw 10vh #a8fff6;
+      border-radius: 30vw;
+    }
+
+    .togglebtn-login {
+      padding: 0.8vw;
+      margin-right: 0.8vw;
+      margin-left: 1.2vw;
+      margin-top:0;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: none;
+      position: relative;
+      font-size: 2.5vh;
+      font-weight: bold;
+    }
+
+    #btn-loginregister {
+      margin-top: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      width: 10vw;
+      height: 6vh;
+      background: linear-gradient(to right, #57f7aa, #639aff);
+      border-radius: 10vw;
+      transition: .5s;
+    }
+
+    .input-group {
+      top: 23vh;
+      position: absolute;
+      margin-left:0;
+      width: 20vw;
+      transition: .5s;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 4%;
+      border: none;
+      border-bottom: 1px solid #999;
+      outline: none;
+      background: transparent;
+      font-size: 2vh;
+    }
+
+    .submit-register {
+      width: 85%;
+      padding: 1vh;
+      cursor: pointer;
+      display: block;
+      margin-top: 3vh;
+      margin-left: 1.5vw;
+      margin-right:2vw;
+      background: linear-gradient(to right, #639aff, #57f7aa);
+      border: 0;
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .submit-login {
+      width: 85%;
+      padding: 1vh;
+      cursor: pointer;
+      display: block;
+      margin-top: 6vh;
+      margin-left: 1.5vw;
+      margin-right:2vw;
+      background: linear-gradient(to right, #639aff, #57f7aa);
+      border: 0;
+      outline: none;
+      border-radius: 30px;
+    }
+
+    .checkbox-register {
+      margin-top: 3vh;
+    }
+
+    .checkbox-login {
+      margin-top: 3vh;
+    }
+
+
+    .registerspan {
+      color: #777;
+      font-size: 1.8vh;
+      bottom: 9.5vh;
+      left:1vw;
+      position: absolute;
+    }
+
+    .loginspan {
+      color: #777;
+      font-size: 1.8vh;
+      bottom: 12.5vh;
+      left:1vw;
+      position: absolute;
+    }
+
+    #login {
+      /* left: 50px; */
+      left: 9%;
+    }
+
+    #register {
+      /* left: 450px; */
+      left: 100%;
+    }
+
+    #Login-naver {
+      position: relative;
+      width: 20vw;
+      height: 6vh;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+      margin-left: 1vw;
+      margin-right: 5vw;
     }
 
     #naverIdLogin {
@@ -44,13 +181,9 @@
       top: 15%;
     }
 
-    body {
-      margin: 0;
-      background-image: url("../static/images/blue.jpg") !important;
-      width: 100%;
-      height: auto;
+    .card-title {
+      text-align: justify;
     }
-
 
     .wrapper {
       background-color: #424242;
@@ -67,8 +200,8 @@
     .loginheader {
       color: #fff;
       height: auto;
-      line-height: 5.5vh;
-      text-align: 5.5vh;
+      line-height: 5.3vh;
+      text-align: 5.3vh;
     }
 
     .card-header h3 {
@@ -83,10 +216,15 @@
 
     .loginwelcome {
       position: relative;
+      margin: auto;
+      margin-bottom:1vh;
+      padding:2vh;
+      padding-bottom:0;
+      width:50vw;
     }
 
     .loginwelcome p {
-      font-size: 15vh;
+      font-size: 8vh;
       text-align: center;
     }
 
@@ -94,6 +232,8 @@
       flex-direction: col;
       flex-wrap: wrap;
     }
+    
+    *:focus { outline:none; }
   </style>
 
 </head>
@@ -110,114 +250,127 @@
             <span class="brand-text font-weight-light"><strong> KBCC</strong></span>
           </a>
           <span class="loginheader">
-            &nbsp&nbsp서비스를 이용하시려면 로그인 해 주세요
+            &nbsp&nbsp서비스를 이용하시려면 로그인/회원가입 해 주세요
           </span>
         </ul>
       </div>
     </nav>
 
     <div class="content-wrapper">
-
       <div class="content">
+
         <div class="container">
           <div class="loginwelcome">
             <p>L&nbspO&nbspG&nbspI&nbspN</p>
           </div>
         </div>
 
-          <section class="content">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card card-primary">
-                    <div class="card-header">
-                      <h3 class="card-title text-xl"></h3>
-                    </div>
-                    <form id="quickForm">
-                      <div class="card-body">
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">ID/Email</label>
-                          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter ID/Email">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                      </div>
+        <section class="content">
+          <div class="container-fluid">
 
-                      <div id="Login">
-                        <div id="naverIdLogin"></div>
-                        <script type="text/javascript">
-                          var naverLogin = new naver.LoginWithNaverId({
-                            clientId: "vNSuVbgtAB3fQe92WPVf",
-                            callbackUrl: "http://localhost/home",
-                            isPopup: false,
-                            loginButton: {
-                              color: "green",
-                              type: 4,
-                              height: 50
-                            }
-                          });
-                          naverLogin.init();
-                        </script>
-                        <p>
-                          </br>
-                        </p>
-                      </div>
+                <div class="form-wrap-login">
 
-                      <div class="card-footer">
-                        <button type="submit" class="btn btn-primary"><a href="/home">로그인</a></button>
-                        <span style="float:right;"><button class="btn btn-primary"><a href="/register">회원가입</a></button></span>
-                      </div>
-                    </form>
-
+                  <div class="button-wrap-login">
+                    <div id="btn-loginregister"></div>
+                    <button type="button" class="togglebtn-login" onclick="login()">LOG IN</button>
+                    <button type="button" class="togglebtn-login" onclick="register()">REGISTER</button>
                   </div>
 
-                </div>
-              </div>
+                  <div id="Login-naver">
+                    <div id="naverIdLogin"></div>
+                    <script type="text/javascript">
+                      var naverLogin = new naver.LoginWithNaverId({
+                        clientId: "vNSuVbgtAB3fQe92WPVf",
+                        callbackUrl: "http://localhost/home",
+                        isPopup: false,
+                        loginButton: {
+                          color: "green",
+                          type: 3,
+                          height: 40,
+                          width: 100
+                        }
+                      });
+                      naverLogin.init();
+                    </script>
+                    <p>
+                      </br>
+                    </p>
+                  </div>
+
+                  <form id="login" action="" class="input-group">
+                    <input type="text" class="input-field" placeholder="User Email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <label><input type="checkbox" class="checkbox-login">&nbspRemember Password</label>
+                    <button class="submit-login"><a href="/home">Login</a></button>
+                  </form>
+                  <form id="register" action="" class="input-group">
+                    <input type="email" class="input-field" placeholder="User Email" required>
+                    <input type="password" class="input-field" placeholder="Enter Password" required>
+                    <input type="password" class="input-field" placeholder="Enter Password Again" required>
+                    <label><input type="checkbox" class="checkbox-register">&nbspTerms and conditions</label>
+                    <button class="submit-register">REGISTER</button>
+                  </form>
+
+              
             </div>
-          </section>
-        </div>
+
+          </div>
+        </section>
       </div>
-
-
-    <!-- Main Footer -->
-    <div class="container">
-      <footer class="main-footer">
-        <div class="footertext">
-          <strong>Copyright &copy; 2020 KBCC </strong> All rights reserved.
-          <span style="float:right;"> Have a great day ! </span>
-        </div>
-      </footer>
     </div>
-  </div>
-  <!-- /.content-wrapper -->
+
+        <div class="container">
+          <footer class="main-footer">
+            <div class="footertext">
+              <strong>Copyright &copy; 2020 KBCC </strong> All rights reserved.
+              <span style="float:right;"> Have a great day ! </span>
+            </div>
+          </footer>
+        </div>
+        
+</div>
+
+    <script>
+      var x = document.getElementById("login");
+      var y = document.getElementById("register");
+      var z = document.getElementById("btn-loginregister");
 
 
-  <script src="../plugins/jquery/jquery.min.js"></script>
-  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <script src="../static/js/adminlte.js"></script>
+      function login() {
+        x.style.left = "2vw";
+        y.style.left = "50vw";
+        z.style.left = "0";
+      }
 
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="../plugins/raphael/raphael.min.js"></script>
-  <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-  <!-- ChartJS -->
-  <script src="../plugins/chart.js/Chart.min.js"></script>
+      function register() {
+        x.style.left = "-100vw";
+        y.style.left = "2vw";
+        z.style.left = "8.5vw";
+      }
+    </script>
 
-  <!-- AdminLTE for demo purposes -->
-  <script src="../stactic/js/demo.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../static/js/pages/dashboard2.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="../static/js/pages/dashboard3.js"></script>
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="../plugins/chart.js/Chart.min.js"></script>
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="../static/js/adminlte.js"></script>
 
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="../plugins/raphael/raphael.min.js"></script>
+    <script src="../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../plugins/chart.js/Chart.min.js"></script>
 
+    <!-- AdminLTE for demo purposes -->
+    <script src="../stactic/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../static/js/pages/dashboard2.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../static/js/pages/dashboard3.js"></script>
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="../plugins/chart.js/Chart.min.js"></script>
 </body>
 
 </html>

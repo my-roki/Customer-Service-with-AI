@@ -1,0 +1,134 @@
+a { text-decoration:none !important; color:black; } 
+a:hover { text-decoration:none !important }
+
+.form-wrap {
+    width: 24vw;
+    height: 60vh;
+    position: relative;
+    margin: 10% auto;
+    background: #fff;
+    padding: 1vh;
+    overflow: hidden;
+}
+
+.button-wrap {
+    width: 18.5vw;
+    height: 6vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 2.5vw;
+    margin-right: 0;
+    position: relative;
+    box-shadow: 0 0 10vw 10vh #a8fff6;
+    border-radius: 30vw;
+}
+
+.togglebtn {
+    padding: 0.8vw;
+    margin-right: 0.8vw;
+    margin-left: 1.2vw;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    right:0;
+    position: absolute;
+    width: 10vw;
+    height: 6vh;
+    background: linear-gradient(to right, #57f7aa, #639aff);
+    border-radius: 10vw;
+    transition: .5s;
+}
+
+.input-group {
+    top: 25vh;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+    font-size:2vh;
+}
+.submit {
+    width: 85%;
+    padding: 1vh;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #639aff, #57f7aa);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.submit-login {
+    width: 85%;
+    padding: 1vh;
+    cursor: pointer;
+    display: block;
+    margin-top:4vh;
+    margin-left:2vw;
+    background: linear-gradient(to right, #639aff, #57f7aa);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.checkbox {
+    margin: 30px 10px 30px 0;
+}
+
+.checkbox-login {
+    margin: 40px 10px 30px 0;
+}
+
+
+.registerspan {
+    color: #777;
+    font-size: 1.8vh;
+    bottom: 8.6vh;
+    position: absolute;
+}
+
+.loginspan {
+    color: #777;
+    font-size: 1.8vh;
+    bottom: 12.5vh;
+    position: absolute;
+}
+
+#login {
+    left: 50px;
+}
+#register {
+    left: 450px;
+} 
+
+#Login-naver {
+  position: relative;  
+  width: 20vw;
+  height: 6vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+#naverIdLogin {
+  position: relative;
+  left: 4%;
+  top: 15%;
+}

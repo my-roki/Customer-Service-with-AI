@@ -5,11 +5,13 @@ from DB_Controller import timely_customer_count, today_count, week_count, month_
 from DB_Service import user_history
 from camera import VideoCamera
 
+
 app = Flask(__name__)
  
 @app.route('/')
 def index():
   return render_template('login.html')
+    
   
 @app.route('/home')
 def home():
